@@ -3,78 +3,186 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>KeyRush</title>  
+        <title>KeyRush</title>
+        <link rel="stylesheet" href="styles.css"/>  
     </head>
     <body>
-        <div class="container">
-            <header class="header">
-                <h1 class="title">KeyRush</h1>
-                <p class="subtitle">Test your typing speed and accuracy</p>
-            </header>
-           <div class="stat-container">
-            <div class="stat-card">
-                <div class="stat-value" id="wpmStat">0</div>
-                    <div class="stat-label">Words Per Minutes</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="accuracy">0%</div>
-                    <div class="stat-label">Accuracy</div>
-            
-           </div>
-           <div class="stat-card">
-                <div class="stat-value" id="charsStat">0</div>
-                    <div class="stat-label">Characters</div>
-            </div>
-        </div>
-
-        <div class="timer" id="timer">1:00</div>
-        <div class="text-display" id="textDisplay"></div>
-        <div class="input-section">
-            <input 
-                type="text" 
-                class="input-field" 
-                id="inputField"
-                placeholder="Start typing to begin..." 
-                autocomplete="off"
-                autocorrect="off"
-                autocapitalize="off"
-                spellcheck="false">
-        </div>
-        <div class="controls">
-            <button class="btn btn-primary" id="StartBtn">Start Here</button>
-            <button class="btn btn-secondary" id="changeTextBtn">Change Text</button>
-        </div>
-    </div>
-
-    <!-- Results Modal -->
-    <div class="modal" id="resultsModal">
-        <div class="modal-content">
-            <h2>Test Results</h2>
-            <div class="result-stats">
-                <div class="result-stat">
-                    <div class="result-value" id="finalWpm">0</div>
-                    <div class="result-label">WPM</div>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">  
+                <div class="logo">KeyRush</div>
+                <div class="nav-menu">
+                    <a href="#" class="nav-link active" data-section="test">Test</a>
+                    <a href="#" class="nav-link" data-section="practice">Practice</a>
+                    <a href="#" class="nav-link" data-section="leaderboard">Leaderboard</a>
                 </div>
-                <div class="result-stat">
-                    <div class="result-value" id="finalAccuracy">0%</div>
-                    <div class="result-label">Accuracy</div>
+                <div class="nav-icons">
+                    <span class="icon">⚙️</span>
+                    <span class="icon">👤</span>
+                </div>
             </div>
-            <div class="result-stat">
-                    <div class="result-value" id="finalCharacters">0%</div>
-                    <div class="result-label">Characters</div>
-            <div class="result-stat">
-                    <div class="result-value" id="finalErrors">0</div>
-                    <div class="result-label">Errors</div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    SYSTEM STATUS: OPTIMAL
+                </div>
+                <h1 class="hero-title">TEST YOUR<br><span class="velocity">VELOCITY</span></h1>
+                <p class="hero-description">The high-performance typing instrument for the elite. Measure raw speed, precision, and metabolic consistency in a nocturnal-optimized lab environment.</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" id="StartBtn">START TEST</button>
+                    <button class="btn btn-secondary" id="changeTextBtn">LOGIN TO TRACK PROGRESS</button>
+                </div>
+            </div>
         </div>
-    </div>
-    <button class="btn btn-primary" onclick="RestartTest()">
-        Try Again
-    </button>
-    </div>
-</div>
-</div>
 
-        </body>
-        </html>
+        <!-- Test Section (Hidden by default) -->
+        <div class="test-section hidden" id="testSection">
+            <div class="container">
+                <!-- Stats Row -->
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-label">WORDS PER MINUTE</div>
+                        <div class="stat-value" id="wpmStat">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">ACCURACY %</div>
+                        <div class="stat-value" id="accuracy">0%</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">COUNTDOWN</div>
+                        <div class="stat-value" id="timer">00:00</div>
+                    </div>
+                </div>
 
-            
+                <!-- Status Badge -->
+                <div class="kinetic-badge">
+                    <span class="kinetic-dot"></span>
+                    KINETIC FOCUS ACTIVE
+                </div>
+
+                <!-- Text Display -->
+                <div class="text-display" id="textDisplay"></div>
+
+                <!-- Duration Buttons -->
+                <div class="duration-buttons">
+                    <button class="duration-btn" data-duration="15">15s</button>
+                    <button class="duration-btn active" data-duration="30">30s</button>
+                    <button class="duration-btn" data-duration="60">60s</button>
+                    <button class="restart-btn" id="restartBtn">↻ RESTART TEST</button>
+                </div>
+
+                <!-- Input Section -->
+                <div class="input-section">
+                    <input 
+                        type="text" 
+                        class="input-field" 
+                        id="inputField"
+                        placeholder="Start typing..." 
+                        autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false">
+                </div>
+
+                <!-- Footer -->
+                <div class="test-footer">
+                    <span class="footer-hint">SHIFT + ENTER</span>
+                    <span class="footer-hint">QUICK RESTART</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Section -->
+        <div class="practice-section hidden" id="practiceSection">
+            <div class="container">
+                <h2 class="section-title">PRACTICE MODE</h2>
+                <p class="section-description">Improve your typing skills with unlimited practice sessions. No timer, just pure typing practice.</p>
+                <div class="practice-content">
+                    <button class="btn btn-primary">Start Unlimited Practice</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div class="leaderboard-section hidden" id="leaderboardSection">
+            <div class="container">
+                <h2 class="section-title">LEADERBOARD</h2>
+                <div class="leaderboard-table">
+                    <div class="leaderboard-header">
+                        <div class="rank">RANK</div>
+                        <div class="name">NAME</div>
+                        <div class="wpm">WPM</div>
+                        <div class="accuracy">ACCURACY</div>
+                    </div>
+                    <div class="leaderboard-body">
+                        <div class="leaderboard-row">
+                            <div class="rank">1</div>
+                            <div class="name">SpeedLord</div>
+                            <div class="wpm">185</div>
+                            <div class="accuracy">98.5%</div>
+                        </div>
+                        <div class="leaderboard-row">
+                            <div class="rank">2</div>
+                            <div class="name">TypingKing</div>
+                            <div class="wpm">172</div>
+                            <div class="accuracy">97.2%</div>
+                        </div>
+                        <div class="leaderboard-row">
+                            <div class="rank">3</div>
+                            <div class="name">KeyMaster</div>
+                            <div class="wpm">168</div>
+                            <div class="accuracy">96.8%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-left">© 2024 KEYRUSH VELOCITY LABS</div>
+                <div class="footer-links">
+                    <a href="#">TERMS</a>
+                    <a href="#">PRIVACY</a>
+                    <a href="#">API</a>
+                    <a href="#">DISCORD</a>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Results Modal -->
+        <div class="modal" id="resultsModal">
+            <div class="modal-content">
+                <h2>Test Results</h2>
+                <div class="result-stats">
+                    <div class="result-stat">
+                        <div class="result-value" id="finalWpm">0</div>
+                        <div class="result-label">WPM</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-value" id="finalAccuracy">0%</div>
+                        <div class="result-label">Accuracy</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-value" id="finalCharacters">0%</div>
+                        <div class="result-label">Characters</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="result-value" id="finalErrors">0</div>
+                        <div class="result-label">Errors</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="console.log('Try again clicked'); restartTest();">
+                    Try Again
+                </button>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
