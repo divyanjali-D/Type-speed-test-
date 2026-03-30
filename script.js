@@ -16,7 +16,7 @@ const sampleTexts = [
     "Artificial intelligence is transforming the world. Machine learning algorithms can now recognize patterns and make predictions with incredible accuracy.",
     "The future of technology lies in quantum computing. These systems will revolutionize how we process information and solve complex problems.",
     "Climate change is one of the most pressing challenges facing humanity today. We must act now to reduce our carbon footprint."
-];
+];  
 
 // DOM Elements
 const heroSection = document.querySelector('.hero');
